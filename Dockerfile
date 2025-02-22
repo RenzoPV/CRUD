@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Copia los archivos del proyecto y construye el JAR
 COPY . .
-RUN mvn clean package -DskipTests
+RUN mvn clean package
 
 # Usa una imagen ligera de Java para ejecutar la app
 FROM eclipse-temurin:17-jdk
