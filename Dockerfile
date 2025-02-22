@@ -1,5 +1,5 @@
 # Usa una imagen de Maven para construir la aplicación
-FROM maven:3.8.6-eclipse-temurin-17 AS builder
+FROM maven:3.8.6-eclipse-temurin-21 AS builder
 WORKDIR /app
 
 # Copia los archivos del proyecto y construye el JAR
@@ -7,7 +7,7 @@ COPY . .
 RUN mvn clean package
 
 # Usa una imagen ligera de Java para ejecutar la app
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
 # Copia el JAR generado desde el contenedor builder
