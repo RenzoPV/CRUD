@@ -40,6 +40,7 @@ public class ProductoController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Producto> eliminarProducto(@PathVariable long id) {
+        System.out.println("Solicitud de eliminar con producto: " + id);
         if (service.obtenerPorId(id).isPresent()) {
             service.eliminar(id);
             return ResponseEntity.ok().build();
@@ -49,6 +50,7 @@ public class ProductoController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Producto> actualizarProducto(@PathVariable long id, @RequestBody Producto producto) {
+        System.out.println("Solicitud de actualizar con producto: " + producto);
         Optional<Producto> productoActualizado = service.actualizar(id,producto);
         return productoActualizado.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
