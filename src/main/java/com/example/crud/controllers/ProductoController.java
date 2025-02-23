@@ -33,6 +33,7 @@ public class ProductoController {
 
     @PostMapping
     public ResponseEntity<Producto> crearProducto(@RequestBody Producto producto) {
+        System.out.println("Solicitud recibida con producto: " + producto);
         Producto nuevoProducto = service.guardar(producto);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoProducto);
     }
