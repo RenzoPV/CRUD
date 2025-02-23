@@ -1,5 +1,6 @@
 package com.example.crud.controllers;
 
+import com.example.crud.dto.ProductoDTO;
 import com.example.crud.dto.ProductosResponse;
 import com.example.crud.entities.Producto;
 import com.example.crud.services.ProductoService;
@@ -32,8 +33,11 @@ public class ProductoController {
     }
 
     @PostMapping
-    public ResponseEntity<Producto> crearProducto(@RequestBody Producto producto) {
-        System.out.println("Solicitud recibida con producto: " + producto);
+    public ResponseEntity<Producto> crearProducto(@RequestBody ProductoDTO productoDTO) {
+        Producto producto = new Producto();
+        producto.setNombre(productoDTO.getNombre());
+        producto.setCantidad(productoDTO.getCantidad());
+        producto.setPrecio(productoDTO.getPrecio());
         Producto nuevoProducto = service.guardar(producto);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevoProducto);
     }
@@ -49,8 +53,11 @@ public class ProductoController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Producto> actualizarProducto(@PathVariable long id, @RequestBody Producto producto) {
-        System.out.println("Solicitud de actualizar con producto: " + producto);
+    public ResponseEntity<Producto> actualizarProducto(@PathVariable long id, @RequestBody ProductoDTO productoDTO) {
+        Producto producto = new Producto();
+        producto.setNombre(productoDTO.getNombre());
+        producto.setCantidad(productoDTO.getCantidad());
+        producto.setPrecio(productoDTO.getPrecio());
         Optional<Producto> productoActualizado = service.actualizar(id,producto);
         return productoActualizado.map(ResponseEntity::ok)
                 .orElseGet(() -> ResponseEntity.notFound().build());
