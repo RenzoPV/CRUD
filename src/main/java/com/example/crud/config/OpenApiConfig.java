@@ -14,11 +14,8 @@ public class OpenApiConfig {
         return new OpenAPI()
                 .servers(List.of(
                         new Server()
-                                .url("https://crud-production-8e41.up.railway.app")
-                                .description("Servidor en Railway"),
-                        new Server()
                                 .url("/")
-                                .description("Servidor local")
+                                .description("Servidor en Railway")
                 ));
     }
 }
